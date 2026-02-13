@@ -3,16 +3,16 @@ import { fileToDataUrl, getFileExtension, groupBy } from "./input.js";
 
 function applyUpcHeaderLayout(ws, options) {
   const widths = {
-    A: 20,
-    B: 20,
-    C: 41,
-    D: 14.22,
-    E: 14.22,
-    F: 9,
-    G: 13.22,
-    H: 12.22,
-    I: 8.11,
-    J: 6.22,
+    A: 12,
+    B: 16,
+    C: 20,
+    D: 8,
+    E: 16,
+    F: 20,
+    G: 16,
+    H: 12,
+    I: 20,
+    J: 16,
     K: 30,
   };
   Object.entries(widths).forEach(([col, width]) => {
@@ -186,9 +186,9 @@ function writeUpcData(ws, rows) {
 
 export async function generateUpcWorkbook(rows, image1File, image2File, options, existingWorkbook) {
   const workbook = existingWorkbook || new ExcelJS.Workbook();
-  const hasStyle = rows.some((row) => String(row["NOMBRE ESTILO"] ?? "").trim() !== "");
+  const hasStyle = rows.some((row) => String(row["ESTILO"] ?? "").trim() !== "");
   const grouped = hasStyle
-    ? groupBy(rows, (row) => String(row["NOMBRE ESTILO"] ?? "").trim() || "REPORTE")
+    ? groupBy(rows, (row) => String(row["ESTILO"] ?? "").trim() || "REPORTE")
     : new Map([["REPORTE", rows]]);
 
   const styleNames = Array.from(grouped.keys()).sort((a, b) => a.localeCompare(b, "es"));
