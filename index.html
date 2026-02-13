@@ -23,212 +23,243 @@
         <span class="logo-text">Generador de Reportes</span>
       </div>
       <div class="header-badges">
-        <span class="badge secondary">11/02/2026</span>
-        <span class="badge">v01</span>
+        <span class="badge secondary">13/02/2026</span>
+        <span class="badge">v02</span>
       </div>
     </header>
 
     <main class="main-content">
-      <div class="grid-layout">
-        <!-- Top: Common Inputs -->
-        <div class="section-common">
-          <section class="card">
-            <div class="card-header">
-              <h2>1. Datos Comunes</h2>
-              <h2>1. Datos Comunes</h2>
-            </div>
-            <div class="card-body row-body">
-              <div class="upload-group">
-                <label class="upload-box" for="pdf-files">
-                  <div class="icon-wrapper pdf">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <path d="M9 15l2 2 4-4" />
-                    </svg>
-                  </div>
-                  <div class="upload-text">
-                    <span class="upload-title">PDFs de Origen</span>
-                    <span class="upload-hint" id="pdf-hint">Arrastra o clic</span>
-                  </div>
-                  <input id="pdf-files" type="file" accept=".pdf" multiple />
-                </label>
-              </div>
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
 
-              <div class="upload-group">
-                <label class="upload-box" for="excel-file">
-                  <div class="icon-wrapper excel">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="8" y1="13" x2="16" y2="13" />
-                      <line x1="8" y1="17" x2="16" y2="17" />
-                      <line x1="10" y1="9" x2="8" y2="9" />
-                    </svg>
-                  </div>
-                  <div class="upload-text">
-                    <span class="upload-title">Excel de Datos</span>
-                    <span class="upload-hint" id="excel-hint">Arrastra o clic</span>
-                  </div>
-                  <input id="excel-file" type="file" accept=".xlsx,.xls,.xlsm" />
-                </label>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- Bottom: Split Workflows -->
-        <div class="workflows-container">
-          <!-- Workflow 1: Case Content -->
-          <section class="card workflow-card">
-            <div class="card-header">
-              <h2>2. Case Content</h2>
-              <div class="workflow-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="image-upload">
-                <label class="upload-box mini" for="case-img-file">
-                  <span class="upload-label">Imagen Referencial</span>
-                  <input id="case-img-file" type="file" accept="image/*" />
-                </label>
-                <div class="preview-mini" id="preview-case-img"></div>
-              </div>
-
-              <div class="workflow-actions">
-                <button class="btn btn-primary full-width" id="btn-case">
-                  Generar Reporte Case Content
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <!-- Workflow 2: UPC Sticker -->
-          <section class="card workflow-card">
-            <div class="card-header">
-              <h2>3. UPC Sticker</h2>
-              <div class="workflow-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                  <path d="M12 11h4" />
-                  <path d="M12 16h4" />
-                  <path d="M8 11h.01" />
-                  <path d="M8 16h.01" />
-                </svg>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="images-grid">
-                <div class="image-upload">
-                  <label class="upload-box mini" for="upc-img1-file">
-                    <span class="upload-label">Imagen 1</span>
-                    <input id="upc-img1-file" type="file" accept="image/*" />
+          <!-- Top Strip: Data Sources -->
+          <div class="dashboard-top">
+            <section class="card data-sources-card">
+              <div class="card-body compact-row">
+                <div class="upload-group compact">
+                  <label class="upload-btn" for="pdf-files">
+                    <span class="icon pdf">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <path d="M9 15l2 2 4-4" />
+                      </svg>
+                    </span>
+                    <div class="text">
+                      <span class="title">PDFs de Origen</span>
+                      <span class="hint" id="pdf-hint">Seleccionar archivos...</span>
+                    </div>
+                    <input id="pdf-files" type="file" accept=".pdf" multiple />
                   </label>
-                  <div class="preview-mini" id="preview-upc-img1"></div>
                 </div>
-                <div class="image-upload">
-                  <label class="upload-box mini" for="upc-img2-file">
-                    <span class="upload-label">Imagen 2</span>
-                    <input id="upc-img2-file" type="file" accept="image/*" />
+
+                <div class="divider-vertical"></div>
+
+                <div class="upload-group compact">
+                  <label class="upload-btn" for="excel-file">
+                    <span class="icon excel">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="8" y1="13" x2="16" y2="13" />
+                        <line x1="8" y1="17" x2="16" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </span>
+                    <div class="text">
+                      <span class="title">Excel de Datos</span>
+                      <span class="hint" id="excel-hint">Seleccionar archivo...</span>
+                    </div>
+                    <input id="excel-file" type="file" accept=".xlsx,.xls,.xlsm" />
                   </label>
-                  <div class="preview-mini" id="preview-upc-img2"></div>
                 </div>
               </div>
-
-              <div class="toggles compact">
-                <label class="toggle-row">
-                  <div class="toggle-switch">
-                    <input id="opt-regular" type="checkbox" />
-                    <span class="slider"></span>
-                  </div>
-                  <span class="toggle-label">Regular</span>
-                  <button type="button" class="info-btn" data-info="regular" title="Ver criterios">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="m21 21-4.3-4.3" />
-                    </svg>
-                  </button>
-                </label>
-                <label class="toggle-row">
-                  <div class="toggle-switch">
-                    <input id="opt-japan" type="checkbox" />
-                    <span class="slider"></span>
-                  </div>
-                  <span class="toggle-label">Formato Japón</span>
-                  <button type="button" class="info-btn" data-info="japan" title="Ver criterios">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="m21 21-4.3-4.3" />
-                    </svg>
-                  </button>
-                </label>
-                <label class="toggle-row">
-                  <div class="toggle-switch">
-                    <input id="opt-canada" type="checkbox" />
-                    <span class="slider"></span>
-                  </div>
-                  <span class="toggle-label">Talla Canadá</span>
-                  <button type="button" class="info-btn" data-info="canada" title="Ver criterios">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="m21 21-4.3-4.3" />
-                    </svg>
-                  </button>
-                </label>
-                <label class="toggle-row">
-                  <div class="toggle-switch">
-                    <input id="opt-brazil" type="checkbox" />
-                    <span class="slider"></span>
-                  </div>
-                  <span class="toggle-label">Talla Brasil</span>
-                  <button type="button" class="info-btn" data-info="brazil" title="Ver criterios">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="m21 21-4.3-4.3" />
-                    </svg>
-                  </button>
-                </label>
-              </div>
-
-              <div class="workflow-actions">
-                <button class="btn btn-secondary full-width" id="btn-upc">
-                  Generar Reporte UPC
-                </button>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      <!-- Modal de criterios -->
-      <div class="modal-overlay" id="criteria-modal">
-        <div class="modal-box">
-          <div class="modal-header">
-            <h3 id="modal-title"></h3>
-            <button type="button" class="modal-close" id="modal-close">&times;</button>
+            </section>
           </div>
-          <div class="modal-body" id="modal-body"></div>
-        </div>
-      </div>
 
-      <div class="status-console" id="status">
-        <span class="status-dot"></span>
-        <span class="status-text">Sistema listo. Esperando archivos...</span>
-      </div>
+          <!-- Left Column: Case Content -->
+          <div class="dashboard-left">
+            <section class="card h-100">
+              <div class="card-header">
+                <h2>Case Content</h2>
+              </div>
+              <div class="card-body column-body">
+                <div class="image-upload full">
+                  <label class="upload-area" for="case-img-file">
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span class="placeholder-text">Click para subir<br>Imagen Referencial</span>
+                    <input id="case-img-file" type="file" accept="image/*" />
+                  </label>
+                  <div class="preview-area" id="preview-case-img"></div>
+                </div>
+                <button class="btn btn-primary full-width" id="btn-case">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Generar Case Content
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <!-- Right Column: UPC Sticker -->
+          <div class="dashboard-right">
+            <section class="card h-100">
+              <div class="card-header">
+                <h2>UPC Sticker Generator</h2>
+              </div>
+              <div class="card-body">
+
+                <!-- UPC Grid Table -->
+                <div class="upc-matrix">
+                  <!-- Header -->
+                  <div class="matrix-header">
+                    <div class="col-check">Activar</div>
+                    <div class="col-dest">Destino</div>
+                    <div class="col-imgs">Imágenes (Click para cambiar)</div>
+                  </div>
+
+                  <!-- Row: Regular -->
+                  <div class="matrix-row" id="row-regular">
+                    <div class="col-check">
+                      <div class="toggle-switch">
+                        <input id="opt-regular" type="checkbox" checked /> <!-- Default checked -->
+                        <span class="slider"></span>
+                      </div>
+                    </div>
+                    <div class="col-dest">
+                      <span class="dest-name">Regular</span>
+                      <button type="button" class="info-icon" data-info="regular">?</button>
+                    </div>
+                    <div class="col-imgs">
+                      <div class="img-slot">
+                        <label for="upc-img1-regular" title="Imagen 1">
+                          <div class="mini-preview" id="preview-upc-img1-regular"></div>
+                          <input id="upc-img1-regular" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                      <div class="img-slot">
+                        <label for="upc-img2-regular" title="Imagen 2">
+                          <div class="mini-preview" id="preview-upc-img2-regular"></div>
+                          <input id="upc-img2-regular" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row: Japan -->
+                  <div class="matrix-row" id="row-japan">
+                    <div class="col-check">
+                      <div class="toggle-switch">
+                        <input id="opt-japan" type="checkbox" />
+                        <span class="slider"></span>
+                      </div>
+                    </div>
+                    <div class="col-dest">
+                      <span class="dest-name">Japón</span>
+                      <button type="button" class="info-icon" data-info="japan">?</button>
+                    </div>
+                    <div class="col-imgs">
+                      <div class="img-slot">
+                        <label for="upc-img1-japan">
+                          <div class="mini-preview" id="preview-upc-img1-japan"></div>
+                          <input id="upc-img1-japan" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                      <div class="img-slot">
+                        <label for="upc-img2-japan">
+                          <div class="mini-preview" id="preview-upc-img2-japan"></div>
+                          <input id="upc-img2-japan" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row: Canada -->
+                  <div class="matrix-row" id="row-canada">
+                    <div class="col-check">
+                      <div class="toggle-switch">
+                        <input id="opt-canada" type="checkbox" />
+                        <span class="slider"></span>
+                      </div>
+                    </div>
+                    <div class="col-dest">
+                      <span class="dest-name">Canadá</span>
+                      <button type="button" class="info-icon" data-info="canada">?</button>
+                    </div>
+                    <div class="col-imgs">
+                      <div class="img-slot">
+                        <label for="upc-img1-canada">
+                          <div class="mini-preview" id="preview-upc-img1-canada"></div>
+                          <input id="upc-img1-canada" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                      <div class="img-slot">
+                        <label for="upc-img2-canada">
+                          <div class="mini-preview" id="preview-upc-img2-canada"></div>
+                          <input id="upc-img2-canada" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row: Brazil -->
+                  <div class="matrix-row" id="row-brazil">
+                    <div class="col-check">
+                      <div class="toggle-switch">
+                        <input id="opt-brazil" type="checkbox" />
+                        <span class="slider"></span>
+                      </div>
+                    </div>
+                    <div class="col-dest">
+                      <span class="dest-name">Brasil</span>
+                      <button type="button" class="info-icon" data-info="brazil">?</button>
+                    </div>
+                    <div class="col-imgs">
+                      <div class="img-slot">
+                        <label for="upc-img1-brazil">
+                          <div class="mini-preview" id="preview-upc-img1-brazil"></div>
+                          <input id="upc-img1-brazil" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                      <div class="img-slot">
+                        <label for="upc-img2-brazil">
+                          <div class="mini-preview" id="preview-upc-img2-brazil"></div>
+                          <input id="upc-img2-brazil" type="file" accept="image/*" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="action-footer">
+                  <button class="btn btn-secondary full-width" id="btn-upc">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Generar Reporte UPC
+                  </button>
+                </div>
+
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Modal de criterios -->
+        <div class="modal-overlay" id="criteria-modal">
+          <div class="modal-box">
+            <div class="modal-header">
+              <h3 id="modal-title"></h3>
+              <button type="button" class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+          </div>
+        </div>
+
+        <div class="status-console" id="status">
+          <span class="status-dot"></span>
+          <span class="status-text">Sistema listo. Esperando archivos...</span>
+        </div>
 
     </main>
   </div>
@@ -263,11 +294,37 @@
     const caseImgInput = document.getElementById("case-img-file");
     const previewCaseImg = document.getElementById("preview-case-img");
 
-    // UPC Inputs
-    const upcImg1Input = document.getElementById("upc-img1-file");
-    const upcImg2Input = document.getElementById("upc-img2-file");
-    const previewUpcImg1 = document.getElementById("preview-upc-img1");
-    const previewUpcImg2 = document.getElementById("preview-upc-img2");
+    // UPC Inputs - Separate for each destination
+    const upcInputs = {
+      regular: {
+        img1: document.getElementById("upc-img1-regular"),
+        img2: document.getElementById("upc-img2-regular"),
+        preview1: document.getElementById("preview-upc-img1-regular"),
+        preview2: document.getElementById("preview-upc-img2-regular"),
+        section: document.getElementById("row-regular")
+      },
+      japan: {
+        img1: document.getElementById("upc-img1-japan"),
+        img2: document.getElementById("upc-img2-japan"),
+        preview1: document.getElementById("preview-upc-img1-japan"),
+        preview2: document.getElementById("preview-upc-img2-japan"),
+        section: document.getElementById("row-japan")
+      },
+      canada: {
+        img1: document.getElementById("upc-img1-canada"),
+        img2: document.getElementById("upc-img2-canada"),
+        preview1: document.getElementById("preview-upc-img1-canada"),
+        preview2: document.getElementById("preview-upc-img2-canada"),
+        section: document.getElementById("row-canada")
+      },
+      brazil: {
+        img1: document.getElementById("upc-img1-brazil"),
+        img2: document.getElementById("upc-img2-brazil"),
+        preview1: document.getElementById("preview-upc-img1-brazil"),
+        preview2: document.getElementById("preview-upc-img2-brazil"),
+        section: document.getElementById("row-brazil")
+      }
+    };
 
     const statusEl = document.querySelector("#status .status-text");
     const statusDot = document.querySelector("#status .status-dot");
@@ -276,6 +333,14 @@
     const optJapan = document.getElementById("opt-japan");
     const optCanada = document.getElementById("opt-canada");
     const optBrazil = document.getElementById("opt-brazil");
+
+    // Map toggles to logic keys
+    const toggleMap = [
+      { el: optRegular, key: 'regular' },
+      { el: optJapan, key: 'japan' },
+      { el: optCanada, key: 'canada' },
+      { el: optBrazil, key: 'brazil' }
+    ];
 
     // ── Criteria Modal ──
     const criteriaModal = document.getElementById("criteria-modal");
@@ -335,7 +400,7 @@
       }
     };
 
-    document.querySelectorAll(".info-btn").forEach((btn) => {
+    document.querySelectorAll(".info-icon").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -355,8 +420,12 @@
 
     // Store default blobs
     let defaultCaseBlob = null;
-    let defaultUpcBlob1 = null;
-    let defaultUpcBlob2 = null;
+    const defaultBlobs = {
+      regular: { img1: null, img2: null },
+      japan:   { img1: null, img2: null },
+      canada:  { img1: null, img2: null },
+      brazil:  { img1: null, img2: null }
+    };
 
     // UI Helpers for file inputs
     const updateFileHint = (input, hintId) => {
@@ -408,72 +477,72 @@
       reader.readAsDataURL(fileOrBlob);
     };
 
-    // Load defaults with specific suffix (or empty for default)
-    const loadDefaultImages = async (suffix = '') => {
+    // Load default images for Case Content and all UPC destinations
+    const loadDefaultImages = async () => {
       try {
-        // Case Content
-        if (!suffix) {
-          const resCase = await fetch('case_content/imagen 1.png');
-          if (resCase.ok) {
-            defaultCaseBlob = await resCase.blob();
-            if (!caseImgInput.files.length) showPreview(defaultCaseBlob, previewCaseImg, true);
-          }
+        // Case Content default
+        const resCase = await fetch('case_content/imagen 1.png');
+        if (resCase.ok) {
+          defaultCaseBlob = await resCase.blob();
+          if (!caseImgInput.files.length) showPreview(defaultCaseBlob, previewCaseImg, true);
         }
+      } catch (e) {
+        console.warn('Could not load default case image', e);
+      }
 
-        // Construct filenames
-        const filename1 = suffix ? `imagen1_${suffix}.png` : `imagen1_rr.png`;
-        const filename2 = suffix ? `imagen2_${suffix}.png` : `imagen2_rr.png`;
+      // UPC images per destination
+      const suffixMap = { regular: 'rr', japan: 'jp', canada: 'ca', brazil: 'br' };
 
-        // Helper to load or show error
-        const loadOrError = async (filename, defaultBlob, input, container) => {
-          if (input.files.length) return; // User manually selected file, ignore
-
+      for (const [key, suffix] of Object.entries(suffixMap)) {
+        const inputs = upcInputs[key];
+        for (const [idx, previewEl, inputEl] of [
+          ['1', inputs.preview1, inputs.img1],
+          ['2', inputs.preview2, inputs.img2]
+        ]) {
+          if (inputEl.files.length) continue; // user already selected a file
+          const filename = `imagen${idx}_${suffix}.png`;
           try {
-            // Add timestamp to prevent caching
-            const res = await fetch(`upc_sticker/${filename}?t=${new Date().getTime()}`);
+            const res = await fetch(`upc_sticker/${filename}?t=${Date.now()}`);
             if (res.ok) {
               const blob = await res.blob();
-              // Update global defaults if standard
-              if (!suffix && filename.includes('imagen1')) defaultUpcBlob1 = blob;
-              if (!suffix && filename.includes('imagen2')) defaultUpcBlob2 = blob;
-
-              showPreview(blob, container, true);
-            } else {
-              // File missing
-              if (suffix) {
-                container.innerHTML = `<div style="color: red; font-size: 11px; padding: 10px; text-align: center; border: 1px dashed red;">
-                            Imagen no encontrada:<br><b>${filename}</b><br>
-                            <span style="color: #666; font-size: 10px;">Suba el archivo a la carpeta del proyecto.</span>
-                         </div>`;
-              } else {
-                // Default file missing
-                container.innerHTML = `<span style="color: #999; font-size: 11px;">Imagen por defecto no encontrada.</span>`;
-              }
+              defaultBlobs[key][`img${idx}`] = blob;
+              showPreview(blob, previewEl, true);
             }
           } catch (e) {
-            console.error(e);
-            container.textContent = "Error loading image";
+            console.warn(`Could not load ${filename}`, e);
           }
-        };
-
-        await loadOrError(filename1, defaultUpcBlob1, upcImg1Input, previewUpcImg1);
-        await loadOrError(filename2, defaultUpcBlob2, upcImg2Input, previewUpcImg2);
-
-      } catch (e) {
-        console.warn("Could not load default images", e);
+        }
       }
     };
 
     loadDefaultImages();
 
-    // Toggle Event Listeners - Allow multiple selection
-    // Removed mutual exclusivity logic
-    const allToggles = [optRegular, optJapan, optCanada, optBrazil];
-    const handleToggleChange = (e) => {
-      // Just update visual state if needed, but currently no extra logic needed for multiple selection
+    // Toggle Event Listeners
+    // Toggle Event Listeners
+    const handleToggleChange = () => {
+      toggleMap.forEach(({ el, key }) => {
+        const row = upcInputs[key].section;
+        if (el.checked) {
+          row.classList.remove('disabled');
+        } else {
+          row.classList.add('disabled');
+        }
+      });
     };
 
-    allToggles.forEach((t) => t.addEventListener('change', handleToggleChange));
+    toggleMap.forEach(({ el }) => el.addEventListener('change', handleToggleChange));
+    // Init state
+    handleToggleChange();
+
+    // Event listeners for file inputs (previews)
+    Object.values(upcInputs).forEach(group => {
+      group.img1.addEventListener('change', () => {
+        if (group.img1.files[0]) showPreview(group.img1.files[0], group.preview1);
+      });
+      group.img2.addEventListener('change', () => {
+        if (group.img2.files[0]) showPreview(group.img2.files[0], group.preview2);
+      });
+    });
 
     caseImgInput.addEventListener("change", () => {
       if (caseImgInput.files[0]) {
@@ -482,26 +551,6 @@
         showPreview(defaultCaseBlob, previewCaseImg, true);
       } else {
         previewCaseImg.innerHTML = "";
-      }
-    });
-
-    upcImg1Input.addEventListener("change", () => {
-      if (upcImg1Input.files[0]) {
-        showPreview(upcImg1Input.files[0], previewUpcImg1);
-      } else if (defaultUpcBlob1) {
-        showPreview(defaultUpcBlob1, previewUpcImg1, true);
-      } else {
-        previewUpcImg1.innerHTML = "";
-      }
-    });
-
-    upcImg2Input.addEventListener("change", () => {
-      if (upcImg2Input.files[0]) {
-        showPreview(upcImg2Input.files[0], previewUpcImg2);
-      } else if (defaultUpcBlob2) {
-        showPreview(defaultUpcBlob2, previewUpcImg2, true);
-      } else {
-        previewUpcImg2.innerHTML = "";
       }
     });
 
@@ -564,14 +613,6 @@
       }
     };
 
-    const fetchImageBlob = async (filename) => {
-      try {
-        const res = await fetch(`upc_sticker/${filename}?t=${new Date().getTime()}`);
-        if (res.ok) return await res.blob();
-      } catch (e) { console.warn("Image fetch fail", filename); }
-      return null;
-    };
-
     const handleUpc = async () => {
       try {
         // Collect selected criteria
@@ -616,27 +657,23 @@
           totalRows += critRows.length;
 
           // Determine images
-          // Logic: 
-          // 1. If user uploaded a custom file manually in UI, use that (override everything).
-          // 2. Else, try to fetch the specific default for this crit (e.g. imagen1_jp.png). 
-          //    Note: Our previous logic loaded defaults into global vars defaultUpcBlob1/2 based on "last selected".
-          //    Here we should fetch dynamically if using defaults to ensure correctness per sheet.
+          const inputs = upcInputs[crit.id];
 
-          let img1 = upcImg1Input.files[0];
-          let img2 = upcImg2Input.files[0];
+          let img1, img2;
 
-          if (!img1) {
-            // Fetch dynamic default
-            const filename1 = crit.id === 'regular' ? `imagen1_rr.png` : `imagen1_${crit.suffix}.png`;
-            img1 = await fetchImageBlob(filename1);
+          if (inputs.img1.files[0]) {
+            img1 = inputs.img1.files[0];
+          } else {
+            img1 = defaultBlobs[crit.id].img1;
           }
-          if (!img2) {
-            const filename2 = crit.id === 'regular' ? `imagen2_rr.png` : `imagen2_${crit.suffix}.png`;
-            img2 = await fetchImageBlob(filename2);
+
+          if (inputs.img2.files[0]) {
+            img2 = inputs.img2.files[0];
+          } else {
+            img2 = defaultBlobs[crit.id].img2;
           }
 
           // Generate sheets into shared workbook
-          // Sheet suffix is used to distinguish sheets e.g. "Style 1 (JP)"
           const workbookOptions = {
             ...options,
             sheetSuffix: crit.name === 'Regular' ? 'Reg' : crit.suffix.toUpperCase()
