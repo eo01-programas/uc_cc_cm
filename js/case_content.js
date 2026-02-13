@@ -351,7 +351,9 @@ export function buildCaseContentData(pdfRows, excelRows) {
     const usSize = row.SIZE ?? "";
     const qtyTalla = row["QTY POR TALLA"] ?? "";
     const unitsPedido = row.TT ?? row["UNITS/TALLA (PEDIDO)"] ?? "";
-    const wip = row["WIP LINE NUMBER"] ?? "";
+    const rawWip = String(row["WIP LINE NUMBER"] ?? "").trim();
+    const wipNum = parseInt(rawWip, 10);
+    const wip = !isNaN(wipNum) ? `N${String(wipNum).padStart(2, "0")}` : rawWip;
     const styleColor = row["STYLE COLOR"] ?? "";
     const upc = row["UPC CODE"] ?? "";
 
