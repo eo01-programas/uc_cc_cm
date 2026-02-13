@@ -290,7 +290,7 @@ export function buildUpcData(pdfRows, excelRows, options) {
     });
   }
 
-  const columns = [
+  const internalColumns = [
     "PROTO COFACO",
     "PEDIDO PRODUCCION COFACO",
     "DESTINO",
@@ -305,7 +305,7 @@ export function buildUpcData(pdfRows, excelRows, options) {
   ];
 
   merged.forEach((row) => {
-    columns.forEach((col) => {
+    internalColumns.forEach((col) => {
       if (!(col in row)) row[col] = "";
     });
   });
@@ -348,27 +348,38 @@ export function buildUpcData(pdfRows, excelRows, options) {
     });
   }
 
+  // Rename and reorder for output
+  const RENAME = {
+    "PO#": "PO#",
+    "PROTO COFACO": "PROTO",
+    "PEDIDO PRODUCCION COFACO": "OP",
+    "LN": "LN",
+    "DESTINO": "DESTINO",
+    "NOMBRE ESTILO": "ESTILO",
+    "STYLE COLOR": "ESTILO_COLOR",
+    "COLOR": "COLOR",
+    "NOMBRE COLOR": "N_COLOR",
+    "UPC CODE": "UPC_CODE",
+    "SIZE": "SIZE",
+  };
+
+  const outputColumns = [
+    "PO#", "PROTO", "OP", "LN", "DESTINO",
+    "ESTILO", "ESTILO_COLOR", "COLOR", "N_COLOR", "UPC_CODE", "SIZE",
+  ];
+
   const finalRows = sorted.map((row) => {
     const out = {};
-    columns.forEach((col) => {
-      out[col] = row[col] ?? "";
+    internalColumns.forEach((col) => {
+      out[RENAME[col]] = row[col] ?? "";
     });
     return out;
   });
 
-  return { rows: finalRows, columns };
+  return { rows: finalRows, columns: outputColumns };
 }
 
 export const UPC_COLUMNS = [
-  "PROTO COFACO",
-  "PEDIDO PRODUCCION COFACO",
-  "DESTINO",
-  "NOMBRE ESTILO",
-  "NOMBRE COLOR",
-  "PO#",
-  "UPC CODE",
-  "STYLE COLOR",
-  "SIZE",
-  "COLOR",
-  "LN",
+  "PO#", "PROTO", "OP", "LN", "DESTINO",
+  "ESTILO", "ESTILO_COLOR", "COLOR", "N_COLOR", "UPC_CODE", "SIZE",
 ];
