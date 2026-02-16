@@ -455,7 +455,7 @@
       if (type === 'success') statusDot.classList.add('success');
     };
 
-    const showPreview = (fileOrBlob, container, isDefault = false) => {
+    const showPreview = (fileOrBlob, container) => {
       if (!fileOrBlob) {
         container.innerHTML = "";
         return;
@@ -466,13 +466,6 @@
         const img = document.createElement("img");
         img.src = reader.result;
         container.appendChild(img);
-        if (isDefault) {
-          const label = document.createElement("span");
-          label.textContent = "Imagen del Proyecto (Por defecto)";
-          label.style.cssText = "position: absolute; bottom: 4px; left: 4px; background: rgba(0,0,0,0.6); color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px;";
-          container.style.position = "relative";
-          container.appendChild(label);
-        }
       };
       reader.readAsDataURL(fileOrBlob);
     };
@@ -484,7 +477,7 @@
         const resCase = await fetch('case_content/imagen 1.png');
         if (resCase.ok) {
           defaultCaseBlob = await resCase.blob();
-          if (!caseImgInput.files.length) showPreview(defaultCaseBlob, previewCaseImg, true);
+          if (!caseImgInput.files.length) showPreview(defaultCaseBlob, previewCaseImg);
         }
       } catch (e) {
         console.warn('Could not load default case image', e);
@@ -506,7 +499,7 @@
             if (res.ok) {
               const blob = await res.blob();
               defaultBlobs[key][`img${idx}`] = blob;
-              showPreview(blob, previewEl, true);
+              showPreview(blob, previewEl);
             }
           } catch (e) {
             console.warn(`Could not load ${filename}`, e);
@@ -548,7 +541,7 @@
       if (caseImgInput.files[0]) {
         showPreview(caseImgInput.files[0], previewCaseImg);
       } else if (defaultCaseBlob) {
-        showPreview(defaultCaseBlob, previewCaseImg, true);
+        showPreview(defaultCaseBlob, previewCaseImg);
       } else {
         previewCaseImg.innerHTML = "";
       }
